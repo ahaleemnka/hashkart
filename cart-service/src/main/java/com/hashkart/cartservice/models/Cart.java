@@ -1,25 +1,23 @@
 package com.hashkart.cartservice.models;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder(toBuilder = true)
+@Getter
+@Setter
 public class Cart {
 
     @Id
     @GeneratedValue
     private Integer id;
-
+    private Integer userId;
+    @OneToMany(targetEntity=Item.class, fetch= FetchType.EAGER)
     private List<Item> itemList;
 
 }
